@@ -16,9 +16,9 @@ jobs:
           cache: "maven"
 
       - name: Build with Maven
-        working-directory: ./spring-boot/test
+        working-directory: ./springboot/test
         run: mvn clean install
 
       - name: Run tests with Maven
-        working-directory: ./spring-boot/test
+        working-directory: ./springboot/test
         run: mvn test
