@@ -12,7 +12,7 @@ on:
         required: false
         default: 'Smith'
 =======
-        default: 'Alice'
+        
 >>>>>>> c0afb52a4791e44461e976a04d50f23712b6236a
       Greeting:
         description: 'Enter your greeting'
