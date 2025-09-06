@@ -87,3 +87,29 @@ Complete Playlist :   [![Mastering GitHub Actions](https://img.shields.io/badge/
     * Building and pushing docker image to Artifact registry
     * Deploying services to Cloud Run
     * Video  :   [![YouTube](https://img.shields.io/badge/YouTube-Video-green)](https://youtu.be/4FRjoc9ycNs)
+
+<!-- BEGIN_TF_DOCS -->
+## Requirements
+
+No requirements.
+
+## Providers
+
+No providers.
+
+## Modules
+
+No modules.
+
+## Resources
+
+No resources.
+
+## Inputs
+
+No inputs.
+
+## Outputs
+
+No outputs.
+<!-- END_TF_DOCS -->
