@@ -1,9 +1,7 @@
 name: Create GitHub Issue on PR Merge
 
 on:
-  push:
-    branches:
-      - main  # This will trigger when code is merged into the 'main' branch
+  workflow_dispatch:
 
 jobs:
   create-issue:
