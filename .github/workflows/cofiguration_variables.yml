@@ -9,11 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     env:
       Greeting: Hello
-      
-     
+        
 
     steps:
       - name: greeting step
-        run: echo "$Greeting $FirstName is using $cloud with project ID ${{ vars.project_id }}!
+        run: echo "$Greeting $FirstName is using $cloud with project ID ${{ vars.project_id }}!"
         env:
           FirstName: John
