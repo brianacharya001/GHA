@@ -1,20 +1,20 @@
 name: git-input-type
-on: 
+
+on:
   workflow_dispatch:
-  jobs:
     inputs:
       name:
-        description: 'who to greet'
+        description: 'Who to greet'
         required: true
         default: 'World'
         type: string
       use-emoji:
-        description: 'whether to include an emoji'
+        description: 'Whether to include an emoji'
         required: false
         default: true
         type: boolean
       environment:
-        description: 'environment to use'
+        description: 'Environment to use'
         required: true
         default: 'prod'
         type: choice
@@ -23,10 +23,26 @@ on:
           - staging
           - prod
       greeting-style:
-        description: 'style of greeting'
+        description: 'Style of greeting'
         required: false
         default: 'formal'
         type: choice
         options:
           - formal
-          - informal      
+          - informal
+
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Display greeting
+        run: |
+          echo "Hello, ${{ github.event.inputs.name }}!"
+          if [ "${{ github.event.inputs.use-emoji }}" == "true" ]; then
+            echo "😊"
+          fi
+          echo "Environment: ${{ github.event.inputs.environment }}"
+          echo "Greeting Style: ${{ github.event.inputs.greeting-style }}"
