@@ -1,0 +1,20 @@
+name: simple input greeting
+on:
+  workflow_dispatch:
+    inputs:
+      FirstName:
+        description: 'Enter your first name'
+        required: true
+        default: 'Alice'
+      Greeting:
+        description: 'Enter your greeting'
+        required: true
+        default: 'Hello'
+
+jobs:
+  greet:  
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Greet User
+        run: echo "${{ inputs.Greeting }} ${{ inputs.FirstName }}! Welcome to GitHub Actions."
