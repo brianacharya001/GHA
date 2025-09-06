@@ -1,32 +1,25 @@
 name: simple input greeting
+
 on:
   workflow_dispatch:
     inputs:
       FirstName:
         description: 'Enter your first name'
         required: true
-<<<<<<< HEAD
-        default: 'Alice
+        default: 'Alice'
       LastName:
         description: 'Enter your last name'
         required: false
         default: 'Smith'
-=======
-        
->>>>>>> c0afb52a4791e44461e976a04d50f23712b6236a
       Greeting:
         description: 'Enter your greeting'
         required: true
         default: 'Hello'
 
 jobs:
-  greet:  
+  greet:
     runs-on: ubuntu-latest
 
     steps:
       - name: Greet User
-<<<<<<< HEAD
-        run: echo "${{ inputs.Greeting }} ${{ input.LatName}} ${{ inputs.FirstName }}! Welcome to GitHub Actions."
-=======
-        run: echo "${{ inputs.Greeting }} ${{ inputs.FirstName }}! Welcome to GitHub Actions."
->>>>>>> c0afb52a4791e44461e976a04d50f23712b6236a
+        run: echo "${{ inputs.Greeting }} ${{ inputs.FirstName }} ${{ inputs.LastName }}! Welcome to GitHub Actions."
