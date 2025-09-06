@@ -28,3 +28,10 @@ jobs:
       - name: Step 2 - Use output from step 1
         run: |
           echo "The greeting was: ${{ steps.set_greeting.outputs.greeting }}"
+
+      - name: Set output
+        id: step1
+        run: echo "day=Friday" >> $GITHUB_OUTPUT
+
+      - name: Use output
+        run: echo "Today is ${{ steps.step1.outputs.day }}"    
