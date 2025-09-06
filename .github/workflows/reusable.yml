@@ -7,17 +7,15 @@ on:
         description: 'First number'
         required: true
         type: number
-        default: 0
       number2:
         description: 'Second number'
         required: true
         type: number
-        default: 0
+
     outputs:
       sum:
         description: 'Sum of the two numbers'
-        value: $
-        
+        value: ${{ jobs.add-numbers.outputs.sum }}
 
 jobs:
   add-numbers:
@@ -25,18 +23,13 @@ jobs:
     runs-on: ubuntu-latest
 
     outputs:
-      sum: $
-    
+      sum: ${{ steps.calculate.outputs.sum }}
+
     steps:
-      - id: set-up-env
-        name: Set up environment
-        run: |
-          echo "NUMBER1=$" >> $GITHUB_ENV
-          echo "NUMBER2=$" >> $GITHUB_ENV
-          
       - name: Calculate sum
         id: calculate
         run: |
-          sum=$((NUMBER1 + NUMBER2))
-          echo "%{sum}"
-          echo "SUM=${sum}" >> $GITHUB_OUTPUT
+          echo "Inputs received: number1=${{ inputs.number1 }}, number2=${{ inputs.number2 }}"
+          sum=$(( ${{ inputs.number1 }} + ${{ inputs.number2 }} ))
+          echo "Sum is: $sum"
+          echo "sum=$sum" >> $GITHUB_OUTPUT
