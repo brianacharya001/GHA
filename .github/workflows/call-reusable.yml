@@ -1,12 +1,11 @@
-name: Call Reusable Workflow
-
-on:
-  push:
-    branches:
-      - main
-
-jobs:
-  call-my-reusable:
-    uses: ./.github/workflows/reusable.yml
+  job-2:
+    needs: job-1
+    # We do not need to check out the repository to use the reusable workflow
+    uses: ./.github/workflows/reusable-workflow.yml
     with:
-      message: "Hello from caller workflow"
+      reusable_input: "job-2-input"
+      filename: "input.txt"
+    secrets:
+      # Can also implicitly pass the secrets with: secrets: inherit
+      HELLO_WORLD_SECRET: TERCES_DLROW_OLLEH
+
