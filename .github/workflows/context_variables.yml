@@ -14,3 +14,4 @@ jobs:
           echo "Repository Name: ${{ github.repository }}"
           echo "Workflow Name: ${{ github.workflow }}"
           echo "Triggered by: ${{ github.triggering_actor }}"
+          echo "api_url: ${{ github.api_urle }}"
