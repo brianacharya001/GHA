@@ -1,0 +1,31 @@
+name: Create GitHub Issue on PR Merge
+
+on:
+  push:
+    branches:
+      - main  # This will trigger when code is merged into the 'main' branch
+
+jobs:
+  create-issue:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v4
+
+      - name: Create a GitHub Issue
+        run: |
+          # GitHub API URL to create an issue in the repository
+          API_URL="https://api.github.com/repos/${{ github.repository }}/issues"
+
+          # Set up the data for the issue we want to create
+          ISSUE_DATA='{
+            "title": "New Issue Created on Merge",
+            "body": "This issue was created automatically after merging a PR into the main branch!",
+            "labels": ["automated"]
+          }'
+
+          # Use the GITHUB_TOKEN to authenticate and create the issue via GitHub API
+          curl -X POST $API_URL \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            -d "$ISSUE_DATA"
