@@ -1,5 +1,6 @@
-terraform {
-  backend "local" {
-    path = "./terraform.tfstate"
+# main.tf
+resource "null_resource" "example" {
+  provisioner "local-exec" {
+    command = "echo Hello from VirtualBox VM"
   }
 }
