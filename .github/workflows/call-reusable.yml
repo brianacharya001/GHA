@@ -1,11 +1,16 @@
-  job-2:
-    needs: job-1
-    # We do not need to check out the repository to use the reusable workflow
-    uses: ./.github/workflows/reusable-workflow.yml
+name: Test workflow
+
+on: 
+  workflow_dispatch:
+
+jobs:
+  test:
+    strategy:
+        matrix:
+          number1: [1, 2, 3, 4, 5, 6, 7]
+          number2: [7, 6, 5, 4, 3, 2, 1]
+    uses: krharsh17/reusable-workflows/.github/workflows/add.yaml@main
     with:
-      reusable_input: "job-2-input"
-      filename: "input.txt"
-    secrets:
-      # Can also implicitly pass the secrets with: secrets: inherit
-      HELLO_WORLD_SECRET: TERCES_DLROW_OLLEH
+      number1: $
+      number2: $   
 
