@@ -5,11 +5,15 @@ on:
       FirstName:
         description: 'Enter your first name'
         required: true
+<<<<<<< HEAD
         default: 'Alice
       LastName:
         description: 'Enter your last name'
         required: false
         default: 'Smith'
+=======
+        default: 'Alice'
+>>>>>>> c0afb52a4791e44461e976a04d50f23712b6236a
       Greeting:
         description: 'Enter your greeting'
         required: true
@@ -21,4 +25,8 @@ jobs:
 
     steps:
       - name: Greet User
+<<<<<<< HEAD
         run: echo "${{ inputs.Greeting }} ${{ input.LatName}} ${{ inputs.FirstName }}! Welcome to GitHub Actions."
+=======
+        run: echo "${{ inputs.Greeting }} ${{ inputs.FirstName }}! Welcome to GitHub Actions."
+>>>>>>> c0afb52a4791e44461e976a04d50f23712b6236a
