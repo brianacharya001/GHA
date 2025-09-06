@@ -1,0 +1,24 @@
+name: user input
+on:
+  workflow_dispatch:
+    inputs:
+      number1:
+        description: 'First number'
+        required: true
+        default: '0'
+      number2:
+        description: 'Second number'
+        required: true
+        default: '0'
+
+jobs:
+  add_numbers:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Add the two numbers
+        run: |
+          echo "First number: ${{ github.event.inputs.number1 }}"
+          echo "Second number: ${{ github.event.inputs.number2 }}"
+          sum=$(( ${{ github.event.inputs.number1 }} + ${{ github.event.inputs.number2 }} ))
+          echo "The sum is: $sum"
