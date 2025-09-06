@@ -9,9 +9,11 @@ jobs:
     runs-on: ubuntu-latest
     env:
       Greeting: Hello
-      FirstName: John
-      project_id: your-project-id-here  # Add the actual project ID or pass it as an input
+      
+     
 
     steps:
       - name: greeting step
-        run: echo "$Greeting $FirstName is using $cloud with project ${{ env.project_id }}"
+        run: echo "$Greeting $FirstName is using $cloud with project ID ${{ vars.project_id }}!
+        env:
+          FirstName: John
