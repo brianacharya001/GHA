@@ -1,6 +1,7 @@
 name: git-input-type
 on: 
   workflow_dispatch:
+  jobs:
     inputs:
       name:
         description: 'who to greet'
