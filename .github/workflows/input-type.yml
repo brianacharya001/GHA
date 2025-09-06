@@ -1,0 +1,31 @@
+name: git-input-type
+on: 
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'who to greet'
+        required: true
+        default: 'World'
+        type: string
+      use-emoji:
+        description: 'whether to include an emoji'
+        required: false
+        default: true
+        type: boolean
+      environment:
+        description: 'environment to use'
+        required: true
+        default: 'prod'
+        type: choice
+        options:
+          - dev
+          - staging
+          - prod
+      greeting-style:
+        description: 'style of greeting'
+        required: false
+        default: 'formal'
+        type: choice
+        options:
+          - formal
+          - informal      
