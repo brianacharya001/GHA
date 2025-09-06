@@ -40,4 +40,3 @@ jobs:
 
       - name: Print `inputs` context
         run: echo "sample_input = ${{ inputs.sample_input }}"
-
