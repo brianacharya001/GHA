@@ -4,6 +4,7 @@ on:
 
 env:
   cloud: google cloud
+  region: us-central1
 
 jobs:
   test-variables:
@@ -12,6 +13,6 @@ jobs:
       Greeting: Hello
     steps:
       - name: "Hello Mona it's Monday"
-        run: echo "$Greeting $First_Name is using  $cloud"
+        run: echo "$Greeting $First_Name is using  $cloud in $region"
         env:
           First_Name: Mike
