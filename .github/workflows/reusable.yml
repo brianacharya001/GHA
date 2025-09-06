@@ -1,4 +1,4 @@
-name: Simple Reusable Workflow
+name: Reusable Workflow
 
 on:
   workflow_call:
@@ -9,8 +9,8 @@ on:
         type: string
 
 jobs:
-  say-hello:
+  print-message:
     runs-on: ubuntu-latest
     steps:
-      - name: Print message
-        run: echo "Message from caller: ${{ inputs.message }}"
+      - name: Say Hello
+        run: echo "Message: ${{ inputs.message }}"
