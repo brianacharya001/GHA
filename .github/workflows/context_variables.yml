@@ -1,4 +1,5 @@
 name: context variables
+
 on:
   workflow_dispatch
 
@@ -8,19 +9,22 @@ env:
 jobs:
   test_context_variables:
     runs-on: ubuntu-latest
+
     steps:
-      - name: "context variables step"
+      - name: "Context Variables Step"
         run: |
           echo "Repository Name: ${{ github.repository }}"
           echo "Workflow Name: ${{ github.workflow }}"
           echo "Triggered by: ${{ github.triggering_actor }}"
-          echo "api_url: ${{ github.api_url }}"
-          echo "Runner: ${{ runner.temp}}"
+          echo "API URL: ${{ github.api_url }}"
+          echo "Runner Temp Dir: ${{ runner.temp }}"
+          echo "Cloud Provider: ${{ env.cloud }}"
 
       - name: Step 1 - Set greeting output
         id: set_greeting
         run: |
-        run: echo "greeting=Hello from step 1!" >> $GITHUB_OUTPUT
+          echo "greeting=Hello from step 1!" >> $GITHUB_OUTPUT
 
       - name: Step 2 - Use output from step 1
         run: echo "The greeting was: ${{ steps.set_greeting.outputs.greeting }}"
+
