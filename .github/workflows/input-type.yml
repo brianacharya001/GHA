@@ -45,4 +45,5 @@ jobs:
           echo "use-emojis = ${{ inputs.use-emojis }}"
           echo "environment = ${{ inputs.environment }}"
           echo "greeting-style = ${{ inputs.greeting-style }}"
-          echo  "Hello  ${{ inputs.sample_input }} our courrent environment is ${{ inputs.environment }} and greeting style is ${{ inputs.greeting-style }} and use-emojis is ${{ inputs.use-emojis }}"
+          echo "github run"
+          echo  "Hello  ${{ inputs.sample_input }} our courrent environment is ${{ inputs.environment }} and greeting style is ${{ inputs.greeting-style }} and use-emojis is ${{ inputs.use-emojis }}  and github run number is ${{ github.run_number }}"
