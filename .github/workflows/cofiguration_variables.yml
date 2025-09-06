@@ -2,17 +2,16 @@ name: configuration variables
 on:
   workflow_dispatch
 env:
-      cloud: google-cloud
+  cloud: google-cloud
 
 jobs:
   greeting_job:
     runs-on: ubuntu-latest
     env:
-      Greeing: Hello
-            
+      Greeting: Hello
+      FirstName: John
+      project_id: your-project-id-here  # Add the actual project ID or pass it as an input
+
     steps:
       - name: greeting step
-        run: echo "$Greeing $FirstName is using $cloud with project ${{var.project_id}}"
-        env:
-          FirstName: John
-
+        run: echo "$Greeting $FirstName is using $cloud with project ${{ env.project_id }}"
