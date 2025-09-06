@@ -27,13 +27,14 @@ jobs:
       - name: Get Git commit version
         id: version
         run: |
-          echo "GIT_COMMIT=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
-          echo "GIT_TAG=$(git describe --tags --abbrev=0)" >> $GITHUB_ENV
+          echo "GITHUB_SHA=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+          echo "GITHUB_RUN_NUMBER=${{ github.run_number }}" >> $GITHUB_ENV
+          echo "VERSION=test-0.0.${{ github.run_number }}-${{ github.sha }}-SNAPSHOT" >> $GITHUB_ENV
 
       - name: Build with Maven
         working-directory: ./springboot/test
-        run: mvn clean install -Dgit.commit=${{ env.GIT_COMMIT }} -Dgit.tag=${{ env.GIT_TAG }}
+        run: mvn clean install -Dversion=${{ env.VERSION }}
 
       - name: Run tests with Maven
         working-directory: ./springboot/test
-        run: mvn test -Dgit.commit=${{ env.GIT_COMMIT }} -Dgit.tag=${{ env.GIT_TAG }}
+        run: mvn test -Dversion=${{ env.VERSION }}
