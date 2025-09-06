@@ -1,26 +1,13 @@
-name: "Terraform"
+name: "Terraform Local VM HTTPD Install"
 
 on:
   push:
     branches: ["master"]
   pull_request:
 
-permissions:
-  contents: write
-  actions: write
-  checks: write
-  deployments: write
-  id-token: write
-  repository-projects: write
-
 jobs:
-  # ✅ Reusable workflow job (make sure the called workflow accepts it)
-  call-workflow-passing-data:
-    uses: brianacharya001/GHA/.github/workflows/automate-readme.yml@master
-
-  # ✅ Terraform Job
   terraform:
-    name: "Terraform"
+    name: "Install HTTPD on Local VM"
     runs-on: self-hosted
 
     defaults:
@@ -31,11 +18,10 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Setup Terraform
+      - name: Set up Terraform
         uses: hashicorp/setup-terraform@v2
-        # Uncomment if using Terraform Cloud
-        # with:
-        #   cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+        with:
+          terraform_version: 1.8.2
 
       - name: Terraform Init
         run: terraform init
