@@ -21,7 +21,7 @@ jobs:
       # Step 3: Install dependencies
       - name: Install dependencies
         run: |
-          cd frontend  # Change to the folder containing package.json if needed
+          cd ./frontend  # Change to the folder containing package.json if needed
           npm install
 
       # Step 4: Enforce Code Style with ESLint
