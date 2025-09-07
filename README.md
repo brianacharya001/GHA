@@ -87,3 +87,33 @@ Complete Playlist :   [![Mastering GitHub Actions](https://img.shields.io/badge/
     * Building and pushing docker image to Artifact registry
     * Deploying services to Cloud Run
     * Video  :   [![YouTube](https://img.shields.io/badge/YouTube-Video-green)](https://youtu.be/4FRjoc9ycNs)
+
+<!-- BEGIN_TF_DOCS -->
+## Requirements
+
+No requirements.
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| <a name="provider_null"></a> [null](#provider\_null) | n/a |
+
+## Modules
+
+No modules.
+
+## Resources
+
+| Name | Type |
+|------|------|
+| [null_resource.example](https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource) | resource |
+
+## Inputs
+
+No inputs.
+
+## Outputs
+
+No outputs.
+<!-- END_TF_DOCS -->

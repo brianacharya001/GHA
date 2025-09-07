@@ -1,0 +1,49 @@
+name: Git Input Type
+
+on:
+  workflow_dispatch:
+    inputs:
+      sample_input:
+        description: "Who to greet"
+        required: false
+        default: "Hello from input"
+        type: string
+
+      use-emojis:
+        description: "Use emojis in the greeting"
+        required: false
+        default: false
+        type: boolean
+
+      environment:
+        description: "Environment to use"
+        required: true
+        default: "production"
+        type: choice
+        options:
+          - production
+          - staging
+          - development
+
+      greeting-style:
+        description: "Style of greeting"
+        required: false
+        default: "formal"
+        type: choice
+        options:
+          - formal
+          - casual
+          - friendly
+
+jobs:
+  dump-context:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print `inputs` context
+        run: |
+          echo "sample_input = ${{ inputs.sample_input }}"
+          echo "use-emojis = ${{ inputs.use-emojis }}"
+          echo "environment = ${{ inputs.environment }}"
+          echo "greeting-style = ${{ inputs.greeting-style }}"
+          echo "github run"
+          echo  "Hello  ${{ inputs.sample_input }} our courrent environment is ${{ inputs.environment }} and greeting style is ${{ inputs.greeting-style }} and use-emojis is ${{ inputs.use-emojis }}  and github run number is ${{ github.run_number }}"

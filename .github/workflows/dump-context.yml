@@ -1,0 +1,42 @@
+name: Dump All GitHub Contexts
+
+on:
+  workflow_dispatch:
+    inputs:
+      sample_input:
+        description: "Sample input value"
+        required: false
+        default: "Hello from input"
+
+jobs:
+  dump-context:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        example: [value1, value2]
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Print `github` context
+        run: echo '${{ toJson(github) }}'
+
+      - name: Print `env` context
+        run: echo '${{ toJson(env) }}'
+
+      - name: Print `runner` context
+        run: echo '${{ toJson(runner) }}'
+
+      - name: Print `matrix` context
+        run: echo '${{ toJson(matrix) }}'
+
+      - name: Print `job` context
+        run: echo '${{ toJson(job) }}'
+
+      - name: Print `steps` context
+        run: echo '${{ toJson(steps) }}'
+
+      - name: Print `inputs` context
+        run: echo "sample_input = ${{ inputs.sample_input }}"

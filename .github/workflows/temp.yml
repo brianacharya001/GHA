@@ -1,0 +1,37 @@
+name: Simple Action with Temporary Folder
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  temp-folder-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v4
+
+      - name: Create a temporary folder
+        run: |
+          # Create a temporary folder
+          mkdir -p ${{ github.workspace }}/temp
+          echo "This is a temporary file" > ${{ github.workspace }}/temp/temp_file.txt
+          echo "Temporary folder and file created!"
+
+      - name: List contents of the temporary folder
+        run: |
+          echo "Listing contents of the temporary folder:"
+          ls -l ${{ github.workspace }}/temp
+
+      - name: Read the temporary file
+        run: |
+          echo "Reading from the temporary file:"
+          cat ${{ github.workspace }}/temp/temp_file.txt
+
+      - name: Clean up the temporary folder (optional)
+        run: |
+          echo "Cleaning up the temporary folder..."
+          rm -rf ${{ github.workspace }}/temp

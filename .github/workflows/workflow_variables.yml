@@ -1,19 +1,18 @@
-name: Testing Workflow Variables
-
+name: Testing Variables
 on:
-  workflow_dispatch
+  workflow_dispatch:
 
 env:
-  cloud: google-cloud
+  cloud: google cloud
+  region: us-central1
 
 jobs:
-  greeting_job:
+  test-variables:
     runs-on: ubuntu-latest
     env:
       Greeting: Hello
     steps:
-      - name: "Say Hello Mona it's Monday"
-        run: echo "$Greeting $First_Name is using $cloud!"
+      - name: "Hello Mona it's Monday"
+        run: echo "$Greeting $First_Name is using  $cloud in $region"
         env:
-          First_Name: Vishal
-
+          First_Name: Mike

@@ -1,1 +1,1 @@
-  bucket_name = "gh-actions-demo-001"
+backend_path = "./my-custom-path/terraform.tfstate"

@@ -1,0 +1,77 @@
+name: Workflow Using Special Environment Variables
+
+on:
+  
+  workflow_dispatch:
+
+jobs:
+  example-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 2: Display all relevant GitHub context variables
+      - name: Display GitHub context variables
+        run: |
+          echo "GITHUB_WORKFLOW = ${{ github.workflow }}"
+          echo "GITHUB_RUN_ID = ${{ github.run_id }}"
+          echo "GITHUB_RUN_NUMBER = ${{ github.run_number }}"
+          echo "GITHUB_SHA = ${{ github.sha }}"
+          echo "GITHUB_REF = ${{ github.ref }}"
+          echo "GITHUB_HEAD_REF = ${{ github.head_ref }}"
+          echo "GITHUB_BASE_REF = ${{ github.base_ref }}"
+          echo "GITHUB_EVENT_NAME = ${{ github.event_name }}"
+          echo "GITHUB_EVENT_PATH = ${{ github.event_path }}"
+          echo "GITHUB_WORKSPACE = ${{ github.workspace }}"
+          echo "GITHUB_ACTOR = ${{ github.actor }}"
+          echo "GITHUB_REPOSITORY = ${{ github.repository }}"
+          echo "GITHUB_SERVER_URL = ${{ github.server_url }}"
+          echo "GITHUB_API_URL = ${{ github.api_url }}"
+          echo "GITHUB_TOKEN = ${{ secrets.GITHUB_TOKEN }}"
+          
+      # Step 3: Use the $GITHUB_TOKEN to perform an API request (e.g., to get repo info)
+      - name: Use GITHUB_TOKEN to interact with GitHub API
+        run: |
+          curl -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+          -X GET https://api.github.com/repos/${{ github.repository }}
+
+      # Step 4: Show the runner information
+      - name: Show runner info
+        run: |
+          echo "RUNNER_OS = ${{ runner.os }}"
+          echo "RUNNER_TEMP = ${{ runner.temp }}"
+          echo "RUNNER_NAME = ${{ runner.name }}"
+          echo "RUNNER_WORKSPACE = ${{ runner.workspace }}"
+          
+      # Step 5: Show system information
+      - name: Show system info
+        run: |
+          echo "HOME = $HOME"
+          echo "PATH = $PATH"
+          echo "CI = $CI"
+          
+      # Step 6: Use $GITHUB_OUTPUT to pass an output to the next step
+      - name: Set output to use in the next step
+        id: step1
+        run: |
+          echo "output_message=Hello from Step 1!" >> $GITHUB_OUTPUT
+
+      # Step 7: Access the output of the previous step
+      - name: Use output from step 1
+        run: |
+          echo "Step 1 Output: ${{ steps.step1.outputs.output_message }}"
+
+      # Step 8: Access the $GITHUB_REF_NAME to determine branch name
+      - name: Display the short ref name
+        run: |
+          echo "Short ref name: ${{ github.ref_name }}"
+          
+      # Step 9: Show the GitHub secret (you need to add a secret in GitHub repo settings)
+      - name: Show a secret value (This should be done securely)
+        run: |
+          echo "MY_SECRET = ${{ secrets.MY_SECRET }}"
+        env:
+          MY_SECRET: ${{ secrets.MY_SECRET }}

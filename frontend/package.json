@@ -1,0 +1,32 @@
+{
+  "name": "GHA",
+  "version": "1.0.0",
+  "description": "A brief description of your project",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint .",
+    "prettify": "prettier --write ."
+  },
+  "author": "brianacharya001",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "prettier": "^2.3.2"
+  },
+  "eslintConfig": {
+    "extends": "eslint:recommended",
+    "env": {
+      "node": true,
+      "es6": true
+    },
+    "rules": {
+      "no-console": "warn",
+      "indent": ["error", 2]
+    }
+  }
+}
