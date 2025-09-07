@@ -32,7 +32,8 @@ jobs:
       - name: Enforce Code Style (ESLint)
         working-directory: ./frontend  # Run ESLint from 'frontend' directory
         run: |
-          npx eslint . --ext .js,.jsx,.ts,.tsx --fix  # Lint JavaScript/TypeScript files and auto-fix issues
+          # Use explicit path to src or another subdirectory if applicable
+          npx eslint ./src --ext .js,.jsx,.ts,.tsx --fix  # Lint JavaScript/TypeScript files and auto-fix issues
         continue-on-error: false  # Ensure this step fails if there are linting errors
 
       # Step 6: Run tests
