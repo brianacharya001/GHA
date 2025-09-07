@@ -1,0 +1,34 @@
+name: Simple Job Dependency Workflow
+
+on:
+  workflow_dispatch:  # Manual trigger for the workflow
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project
+        run: npm run build  # Assuming you have a build script
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build  # This makes the deploy job depend on the 'build' job
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy project
+        run: echo "Deploying project..."  # Placeholder for actual deploy command
