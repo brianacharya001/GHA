@@ -1,29 +1,45 @@
-name: Enforce Code Style
+name: Node.js CI with Code Style Enforcement
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  lint:
+  build:
     runs-on: ubuntu-latest
 
     steps:
+      # Step 1: Checkout code
       - name: Checkout code
         uses: actions/checkout@v4
 
+      # Step 2: Set up Node.js environment
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '16'
 
+      # Step 3: Install dependencies
       - name: Install dependencies
-        run: npm install
-
-      - name: Run ESLint
-        run: npm run lint  # Assuming you have a linting script in your package.json
-
-      - name: Fail if linting fails
         run: |
-          if [ $? -ne 0 ]; then
-            echo "Linting failed. Please fix the issues." && exit 1
-          fi
+          cd frontend  # Change to the folder containing package.json if needed
+          npm install
+
+      # Step 4: Enforce Code Style with ESLint
+      - name: Enforce Code Style (ESLint)
+        run: |
+          cd frontend  # Change to the folder containing your code
+          npx eslint . --ext .js,.jsx,.ts,.tsx --fix  # Lint JavaScript/TypeScript files and auto-fix issues
+        continue-on-error: false  # Ensure this step fails if there are linting errors
+
+      # Step 5: Run tests
+      - name: Run tests
+        run: |
+          cd frontend  # Ensure to run tests from the correct folder
+          npm test
+
+      # Optional: Additional steps like deployment can be added here
