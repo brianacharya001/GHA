@@ -18,8 +18,8 @@ jobs:
         with:
           node-version: '16'
 
-      # Step 3: List files in 'frontend' (for debugging purposes)
-      - name: List files in frontend
+      # Step 3: List files in 'frontend' directory (for debugging purposes)
+      - name: List files in frontend directory
         run: |
           ls -R ./frontend  # List files recursively in the 'frontend' directory
 
@@ -39,5 +39,3 @@ jobs:
       - name: Run tests
         working-directory: ./frontend  # Run tests from 'frontend' directory
         run: npm test
-
-      # Optional: Additional steps like deployment can be added here
