@@ -1,7 +1,12 @@
-name: Node.js CI with Code Style Enforcement
+name: Node.js CI with ESLint
 
 on:
-  workflow_dispatch
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build:
@@ -18,23 +23,27 @@ jobs:
         with:
           node-version: '16'
 
-      # Step 3: Install dependencies
+      # Step 3: List files in 'frontend' directory (for debugging purposes)
+      - name: List files in frontend
+        run: |
+          cd frontend  # Change to 'frontend' directory
+          ls -R        # List files recursively in the directory
+
+      # Step 4: Install dependencies
       - name: Install dependencies
         run: |
-          cd ./frontend  # Change to the folder containing package.json if needed
+          cd frontend  # Change to 'frontend' directory
           npm install
 
-      # Step 4: Enforce Code Style with ESLint
+      # Step 5: Enforce Code Style (ESLint)
       - name: Enforce Code Style (ESLint)
         run: |
-          cd frontend  # Change to the folder containing your code
-          npx eslint . --ext .js,.jsx,.ts,.tsx --fix  # Lint JavaScript/TypeScript files and auto-fix issues
-        continue-on-error: false  # Ensure this step fails if there are linting errors
+          cd frontend  # Change to 'frontend' directory
+          npx eslint . --ext .js,.jsx,.ts,.tsx --fix  # Lint JavaScript/TypeScript files
+        continue-on-error: false
 
-      # Step 5: Run tests
+      # Step 6: Run tests
       - name: Run tests
         run: |
-          cd frontend  # Ensure to run tests from the correct folder
+          cd frontend  # Change to 'frontend' directory
           npm test
-
-      # Optional: Additional steps like deployment can be added here
