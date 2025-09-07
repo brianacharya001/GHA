@@ -1,12 +1,7 @@
 name: Node.js CI with Code Style Enforcement
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+  workflow_dispatch
 
 jobs:
   build:
