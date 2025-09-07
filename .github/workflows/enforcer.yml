@@ -18,24 +18,27 @@ jobs:
         with:
           node-version: '16'
 
-      # Step 3: List files in 'frontend' directory (for debugging purposes)
+      # Step 3: List files in 'frontend' directory for debugging
       - name: List files in frontend directory
         run: |
-          ls -R ./frontend  # List files recursively in the 'frontend' directory
+          echo "Listing files in ./frontend"
+          ls -R ./frontend  # List all files recursively in the 'frontend' directory
 
       # Step 4: Install dependencies
       - name: Install dependencies
-        working-directory: ./frontend  # Change to 'frontend' directory for npm install
+        working-directory: ./frontend  # Ensure we're in the 'frontend' directory
         run: npm install
 
       # Step 5: Enforce Code Style with ESLint
       - name: Enforce Code Style (ESLint)
         working-directory: ./frontend  # Run ESLint from 'frontend' directory
         run: |
-          npx eslint . --ext .js,.jsx,.ts,.tsx --fix  # Lint JavaScript/TypeScript files and auto-fix issues
-        continue-on-error: false  # Ensure this step fails if there are linting errors
+          # Explicitly target files and directories
+          echo "Running ESLint in the frontend directory"
+          npx eslint ./frontend --ext .js,.jsx,.ts,.tsx --fix  # Explicitly target 'frontend' folder
+        continue-on-error: false  # Fail the step if there are linting errors
 
       # Step 6: Run tests
       - name: Run tests
-        working-directory: ./frontend  # Run tests from 'frontend' directory
+        working-directory: ./frontend  # Ensure we run tests in the 'frontend' folder
         run: npm test
