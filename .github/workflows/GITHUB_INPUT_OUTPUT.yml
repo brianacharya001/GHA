@@ -1,0 +1,35 @@
+name: Workflow with GITHUB_INPUT and GITHUB_OUTPUT
+
+on:
+  workflow_dispatch:
+    inputs:
+      number:
+        description: 'Enter a number to square'
+        required: true
+        default: 2
+        type: integer
+
+jobs:
+  calculate-square:
+    runs-on: ubuntu-latest
+    
+    steps:
+      # Step 1: Print the input number received from workflow_dispatch
+      - name: Print input number
+        run: |
+          echo "The input number is ${{ github.event.inputs.number }}"
+        
+      # Step 2: Calculate the square of the input number
+      - name: Calculate square of the number
+        id: square
+        run: |
+          number=${{ github.event.inputs.number }}
+          square=$((number * number))
+          
+          # Use $GITHUB_OUTPUT to store the square of the number
+          echo "result=$square" >> $GITHUB_OUTPUT
+
+      # Step 3: Output the result of the square calculation
+      - name: Display the squared number
+        run: |
+          echo "The square of the number is ${{ steps.square.outputs.result }}"
